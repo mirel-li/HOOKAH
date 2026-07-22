@@ -1,407 +1,324 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOOKAH MIXES | Кальянное меню</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0f1015;
-            --card-bg: #181a22;
-            --card-border: #2a2d3d;
-            --text-main: #f1f3f9;
-            --text-muted: #8c93a8;
-            --accent-glow: rgba(255, 107, 107, 0.15);
-            
-            --cat-berry: #e63946;
-            --cat-fruit: #f4a261;
-            --cat-fruit-berry: #d62828;
-            --cat-drink: #457b9d;
-            --cat-dessert: #e76f51;
-            --cat-citrus: #e9c46a;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кальянные Миксы — ХАУС</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
-        }
+  :root {
+    --paper: #F0EDE3;
+    --card: #F7F4EA;
+    --ink: #2C4A34;
+    --ink-dim: #4A6350;
+    --text: #2B2B26;
+    --soft: #6b6a5f;
+    --rule: #CFC9B6;
+  }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            padding: 20px 15px 50px;
-        }
+  body {
+    background: var(--paper);
+    color: var(--text);
+    font-family: 'PT Serif', serif;
+    min-height: 100vh;
+  }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+  .page { max-width: 1080px; margin: 0 auto; padding: 60px 32px 90px; }
 
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px 0;
-        }
+  /* HEADER */
+  .header { text-align: center; margin-bottom: 46px; }
 
-        .badge {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #ff6b6b;
-            background: rgba(255, 107, 107, 0.1);
-            padding: 6px 14px;
-            border-radius: 20px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(255, 107, 107, 0.2);
-        }
+  .est {
+    font-size: 11px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--soft);
+  }
 
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #fff 0%, #a5a5a5 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+  .brand {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: clamp(52px, 8vw, 84px);
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    line-height: 1;
+    margin-top: 6px;
+  }
 
-        p.subtitle {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
+  .brand-sub {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-top: 8px;
+  }
 
-        /* Search & Filters */
-        .controls {
-            margin-bottom: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
+  .menu-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4.5vw, 38px);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-top: 32px;
+  }
 
-        .search-box {
-            width: 100%;
-            max-width: 500px;
-            position: relative;
-        }
+  .menu-sub {
+    font-style: italic;
+    font-size: 15px;
+    color: var(--soft);
+    margin-top: 6px;
+  }
 
-        .search-box input {
-            width: 100%;
-            padding: 14px 20px;
-            border-radius: 12px;
-            border: 1px solid var(--card-border);
-            background: var(--card-bg);
-            color: var(--text-main);
-            font-size: 0.95rem;
-            outline: none;
-            transition: all 0.3s ease;
-        }
+  .divider {
+    width: 60px;
+    height: 1px;
+    background: var(--rule);
+    margin: 26px auto 0;
+  }
 
-        .search-box input:focus {
-            border-color: #ff6b6b;
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
+  /* FILTERS */
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 30px;
+  }
+  .filter-btn {
+    background: none;
+    border: 1px solid var(--rule);
+    color: var(--soft);
+    font-family: 'PT Serif', serif;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    padding: 8px 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-radius: 2px;
+  }
+  .filter-btn:hover { border-color: var(--ink); color: var(--ink); }
+  .filter-btn.active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
 
-        .categories {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-        }
+  .count-text {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin-top: 16px;
+  }
 
-        .cat-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-muted);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.25s ease;
-        }
+  /* GRID */
+  .grid {
+    margin-top: 44px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
 
-        .cat-btn:hover, .cat-btn.active {
-            background: #ff6b6b;
-            color: #fff;
-            border-color: #ff6b6b;
-            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
-        }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    padding: 26px 26px 22px;
+    position: relative;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
-        /* Mixes Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 20px;
-        }
-     .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-            position: relative;
-            overflow: hidden;
-        }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--ink-dim);
+    box-shadow: 0 10px 24px rgba(44,74,52,0.08);
+  }
 
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: #3d4259;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
+  .card.hidden { display: none; }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-        }
+  .card-tag {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
 
-        .card-category {
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 4px 10px;
-            border-radius: 6px;
-        }
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 21px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
 
-        .cat-tag-ягодные { background: rgba(230, 57, 70, 0.15); color: var(--cat-berry); }
-        .cat-tag-фруктовые { background: rgba(244, 162, 97, 0.15); color: var(--cat-fruit); }
-        .cat-tag-фруктово-ягодные { background: rgba(214, 40, 40, 0.15); color: var(--cat-fruit-berry); }
-        .cat-tag-напитки { background: rgba(69, 123, 157, 0.15); color: var(--cat-drink); }
-        .cat-tag-десерты { background: rgba(231, 111, 81, 0.15); color: var(--cat-dessert); }
-        .cat-tag-цитрусовые { background: rgba(233, 196, 106, 0.15); color: var(--cat-citrus); }
+  .card-desc {
+    font-style: italic;
+    font-size: 13px;
+    color: var(--soft);
+  }
 
-        .card-title {
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
+  .card-ingredients {
+    font-size: 12.5px;
+    color: var(--soft);
+    line-height: 1.55;
+    padding-top: 10px;
+    border-top: 1px dotted var(--rule);
+  }
 
-        /* Ingredients List & Progress Bar */
-        .ingredients {
-            list-style: none;
-            margin-bottom: 15px;
-        }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 6px;
+  }
 
-        .ingredient-item {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.88rem;
-            margin-bottom: 6px;
-            color: #d1d5db;
-        }
+  .strength-label {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin-bottom: 5px;
+  }
 
-        .ingredient-item .pct {
-            font-weight: 700;
-            color: #ff6b6b;
-        }
+  .strength-bar { display: flex; gap: 3px; }
+  .strength-pip {
+    width: 15px;
+    height: 3px;
+    background: var(--rule);
+  }
+  .strength-pip.filled { background: var(--ink); }
 
-        .mix-bar {
-            height: 6px;
-            width: 100%;
-            background: #252836;
-            border-radius: 3px;
-            display: flex;
-            overflow: hidden;
-            margin-top: 10px;
-        }
+  .strength-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--ink);
+    line-height: 1;
+  }
+  .strength-den { font-size: 12px; color: var(--soft); }
 
-        .mix-segment {
-            height: 100%;
-        }
-
-        .empty-state {
-            text-align: center;
-            grid-column: 1 / -1;
-            padding: 50px 0;
-            color: var(--text-muted);
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 1.7rem; }
-            .grid { grid-template-columns: 1fr; }
-        }
-    </style>
+  @media (max-width: 560px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <span class="badge">Кальянная Карта</span>
-            <h1>ГОТОВЫЕ МИКСЫ</h1>
-            <p class="subtitle">Идеальные пропорции из имеющегося ассортимента</p>
-        </header>
+<div class="page">
 
-        <div class="controls">
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Поиск по названию или табаку...">
-            </div>
-            <div class="categories" id="categoryFilter">
-                <button class="cat-btn active" data-cat="all">Все (36)</button>
-                <button class="cat-btn" data-cat="Ягодные">Ягодные</button>
-                <button class="cat-btn" data-cat="Фруктовые">Фруктовые</button>
-                <button class="cat-btn" data-cat="Фруктово-Ягодные">Фруктово-Ягодные</button>
-                <button class="cat-btn" data-cat="Напитки">Напитки</button>
-                <button class="cat-btn" data-cat="Десерты">Десерты</button>
-                <button class="cat-btn" data-cat="Цитрусовые">Цитрусовые</button>
-            </div>
-        </div>
-     <div class="grid" id="mixGrid"></div>
+  <div class="header">
+    <div class="est">Est. 2018</div>
+    <div class="brand">ХАУС</div>
+    <div class="brand-sub">на Волжской 34</div>
+
+    <div class="menu-title">Кальянные миксы</div>
+    <p class="menu-sub">готовые сочетания на любой вкус</p>
+    <div class="divider"></div>
+
+    <div class="filters" id="filters">
+      <button class="filter-btn active" data-cat="all">Все</button>
     </div>
+    <div class="count-text" id="count-text"></div>
+  </div>
 
-    <footer>
-        <p>© HOOKAH MIXES — База рецептур</p>
-    </footer>
+  <div class="grid" id="grid"></div>
 
-    <script>
-        const mixes = [
-            // Ягодные
-            { cat: "Ягодные", title: "Виноградно-малиновый сорбет", items: [{n: "Малина", p: 40}, {n: "Виноградный Чупа-Чупс", p: 40}, {n: "Тростниковая Мята", p: 20}] },
-            { cat: "Ягодные", title: "Насыщенный гранат-вишня", items: [{n: "Гранат-Вишня", p: 50}, {n: "Клубника", p: 30}, {n: "Малина", p: 20}] },
-            { cat: "Ягодные", title: "Ягодный Раффаэлло", items: [{n: "Малиновый Рифаэлло", p: 50}, {n: "Клубника", p: 30}, {n: "Сливочное Мороженое", p: 20}] },
-            { cat: "Ягодные", title: "Темные ягоды с прохладой", items: [{n: "Гранат и Виноград", p: 60}, {n: "Ice Baby", p: 30}, {n: "Тростниковая Мята", p: 10}] },
-            { cat: "Ягодные", title: "Нежный ягодный смузи", items: [{n: "Клубника", p: 40}, {n: "Малина", p: 40}, {n: "Персиковый Йогурт", p: 20}] },
-            { cat: "Ягодные", title: "Пряная вишня и малина", items: [{n: "Гранат-Вишня", p: 50}, {n: "Малина", p: 40}, {n: "Эстрагон", p: 10}] },
+</div>
 
-            // Фруктовые
-            { cat: "Фруктовые", title: "Тропический кислый взрыв", items: [{n: "Манго Слинг", p: 40}, {n: "Настоящая Маракуйя", p: 40}, {n: "Кислый Ананас", p: 20}] },
-            { cat: "Фруктовые", title: "Летний арбуз с киви", items: [{n: "Арбуз - Дыня", p: 50}, {n: "Киви-Смузи", p: 40}, {n: "Тростниковая Мята", p: 10}] },
-            { cat: "Фруктовые", title: "Сливочная экзотика", items: [{n: "Марула", p: 40}, {n: "Яркая Папайя", p: 40}, {n: "Ананасовые Колечки", p: 20}] },
-            { cat: "Фруктовые", title: "Кислый яблочно-ананасовый микс", items: [{n: "Кислый Ананас", p: 40}, {n: "Яблочные Конфеты", p: 40}, {n: "Фейхоа", p: 20}] },
-            { cat: "Фруктовые", title: "Тропический сок с маракуйей", items: [{n: "Тропический Сок", p: 50}, {n: "Настоящая Маракуйя", p: 30}, {n: "Манго Слинг", p: 20}] },
-            { cat: "Фруктовые", title: "Арбузная фейхоа с зеленью", items: [{n: "Фейхоа", p: 40}, {n: "Арбуз - Дыня", p: 40}, {n: "Базилик", p: 20}] },
+<script>
+const mixes = [
+  { cat: "Ягодные",          name: "Виноградно-малиновый сорбет",     ingredients: "Малина 40% + Виноградный Чупа-Чупс 40% + Тростниковая Мята 20%" },
+  { cat: "Ягодные",          name: "Насыщенный гранат-вишня",         ingredients: "Гранат-Вишня 50% + Клубника 30% + Малина 20%" },
+  { cat: "Ягодные",          name: "Ягодный Раффаэлло",               ingredients: "Малиновый Рифаэлло 50% + Клубника 30% + Сливочное Мороженое 20%" },
+  { cat: "Ягодные",          name: "Темные ягоды с прохладой",        ingredients: "Гранат и Виноград 60% + Ice Baby 30% + Тростниковая Мята 10%" },
+  { cat: "Ягодные",          name: "Нежный ягодный смузи",            ingredients: "Клубника 40% + Малина 40% + Персиковый Йогурт 20%" },
+  { cat: "Ягодные",          name: "Пряная вишня и малина",           ingredients: "Гранат-Вишня 50% + Малина 40% + Эстрагон 10%" },
+  { cat: "Фруктовые",        name: "Тропический кислый взрыв",        ingredients: "Манго Слинг 40% + Настоящая Маракуйя 40% + Кислый Ананас 20%" },
+  { cat: "Фруктовые",        name: "Летний арбуз с киви",             ingredients: "Арбуз-Дыня 50% + Киви-Смузи 40% + Тростниковая Мята 10%" },
+  { cat: "Фруктовые",        name: "Сливочная экзотика",              ingredients: "Марула 40% + Яркая Папайя 40% + Ананасовые Колечки 20%" },
+  { cat: "Фруктовые",        name: "Кислый яблочно-ананасовый микс",  ingredients: "Кислый Ананас 40% + Яблочные Конфеты 40% + Фейхоа 20%" },
+  { cat: "Фруктовые",        name: "Тропический сок с маракуйей",     ingredients: "Тропический Сок 50% + Настоящая Маракуйя 30% + Манго Слинг 20%" },
+  { cat: "Фруктовые",        name: "Арбузная фейхоа с зеленью",       ingredients: "Фейхоа 40% + Арбуз-Дыня 40% + Базилик 20%" },
+  { cat: "Фруктово-Ягодные", name: "Свежий Пинкман-Смузи",            ingredients: "Пинкман 50% + Киви-Смузи 30% + Клубника 20%" },
+  { cat: "Фруктово-Ягодные", name: "Рокетмэн с малиновым акцентом",   ingredients: "Рокетмэн 50% + Малина 40% + Тростниковая Мята 10%" },
+  { cat: "Фруктово-Ягодные", name: "Клубнично-ананасовый шейк",       ingredients: "Клубника 40% + Ананасовые Колечки 40% + Персиковый Йогурт 20%" },
+  { cat: "Фруктово-Ягодные", name: "Арбузно-гранатовый микс",         ingredients: "Арбуз-Дыня 50% + Гранат-Вишня 30% + Малина 20%" },
+  { cat: "Фруктово-Ягодные", name: "Экзотический виноград",           ingredients: "Виноградный Чупа-Чупс 40% + Яркая Папайя 40% + Ice Baby 20%" },
+  { cat: "Фруктово-Ягодные", name: "Ягодная маракуйя",                ingredients: "Ice Baby 40% + Настоящая Маракуйя 30% + Клубника 30%" },
+  { cat: "Напитки",          name: "Цитрусовый Эрл Грей",             ingredients: "Чай Эрл Грей 60% + Апельсин и мандарин 30% + Крепкий Лимон-Лайм 10%" },
+  { cat: "Напитки",          name: "Домашний Тархун",                 ingredients: "Эстрагон 50% + Крепкий Лимон-Лайм 30% + Киви-Смузи 20%" },
+  { cat: "Напитки",          name: "Шот Лимончелло",                  ingredients: "Лимончелло 50% + Кактус-Лайм 30% + Тростниковая Мята 20%" },
+  { cat: "Напитки",          name: "Тропическая Сангрия",             ingredients: "Гранат и Виноград 40% + Тропический Сок 40% + Апельсин и мандарин 20%" },
+  { cat: "Напитки",          name: "Пряный базиликовый лимонад",      ingredients: "Крепкий Лимон-Лайм 40% + Базилик 30% + Арбуз-Дыня 30%" },
+  { cat: "Напитки",          name: "Ягодный чай с бергамотом",        ingredients: "Чай Эрл Грей 50% + Малина 40% + Тростниковая Мята 10%" },
+  { cat: "Десерты",          name: "Шоколадно-коричный спешл",        ingredients: "Булочка с корицей 40% + Шоколадное Печенье 40% + Сливочное Мороженое 20%" },
+  { cat: "Десерты",          name: "Кокосовый Раффаэлло",             ingredients: "Малиновый Рифаэлло 50% + Кокосовый Шейк 30% + Сливочное Мороженое 20%" },
+  { cat: "Десерты",          name: "Лимонно-вафельный пай",           ingredients: "Лимонные Вафли 50% + Сливочное Мороженое 30% + Булочка с корицей 20%" },
+  { cat: "Десерты",          name: "Шоколадный попкорн",              ingredients: "Какао и Маршмеллоу 40% + Оригинальный Попкорн 40% + Сливочное Мороженое 20%" },
+  { cat: "Десерты",          name: "Сливочно-кукурузный йогурт",      ingredients: "Персиковый Йогурт 60% + Сливочная Кукуруза 20% + Кокосовый Шейк 20%" },
+  { cat: "Десерты",          name: "Мятно-шоколадный десерт",         ingredients: "Шоколад и Мята 50% + Шоколадное Печенье 30% + Сливочное Мороженое 20%" },
+  { cat: "Цитрусовые",       name: "Цитрусовый фреш",                 ingredients: "Апельсин и мандарин 50% + Крепкий Лимон-Лайм 30% + Кактус-Лайм 20%" },
+  { cat: "Цитрусовые",       name: "Яркий Пинкман Цитрус",            ingredients: "Пинкман 50% + Апельсин и мандарин 30% + Крепкий Лимон-Лайм 20%" },
+  { cat: "Цитрусовые",       name: "Освежающий Кактус-Лайм",          ingredients: "Кактус-Лайм 50% + Лимончелло 30% + Тростниковая Мята 20%" },
+  { cat: "Цитрусовые",       name: "Лимонно-апельсиновый пирог",      ingredients: "Апельсин и мандарин 40% + Лимонные Вафли 40% + Сливочное Мороженое 20%" },
+  { cat: "Цитрусовые",       name: "Кислый Рокетмэн",                 ingredients: "Рокетмэн 50% + Крепкий Лимон-Лайм 30% + Кислый Ананас 20%" },
+  { cat: "Цитрусовые",       name: "Пряный Лимончелло",               ingredients: "Лимончелло 50% + Апельсин и мандарин 30% + Базилик 20%" },
+];
 
-            // Фруктово-Ягодные
-            { cat: "Фруктово-Ягодные", title: "Свежий Пинкман-Смузи", items: [{n: "Пинкман", p: 50}, {n: "Киви-Смузи", p: 30}, {n: "Клубника", p: 20}] },
-            { cat: "Фруктово-Ягодные", title: "Рокетмэн с малиновым акцентом", items: [{n: "Рокетмэн", p: 50}, {n: "Малина", p: 40}, {n: "Тростниковая Мята", p: 10}] },
-            { cat: "Фруктово-Ягодные", title: "Клубнично-ананасовый шейк", items: [{n: "Клубника", p: 40}, {n: "Ананасовые Колечки", p: 40}, {n: "Персиковый Йогурт", p: 20}] },
-            { cat: "Фруктово-Ягодные", title: "Арбузно-гранатовый микс", items: [{n: "Арбуз - Дыня", p: 50}, {n: "Гранат-Вишня", p: 30}, {n: "Малина", p: 20}] },
-            { cat: "Фруктово-Ягодные", title: "Экзотический виноград", items: [{n: "Виноградный Чупа-Чупс", p: 40}, {n: "Яркая Папайя", p: 40}, {n: "Ice Baby", p: 20}] },
-            { cat: "Фруктово-Ягодные", title: "Ягодная маракуйя", items: [{n: "Ice Baby", p: 40}, {n: "Настоящая Маракуйя", p: 30}, {n: "Клубника", p: 30}] },
+const cats = ["all", ...new Set(mixes.map(m => m.cat))];
+const filtersEl = document.getElementById('filters');
+const grid = document.getElementById('grid');
+const countText = document.getElementById('count-text');
 
-            // Напитки
-            { cat: "Напитки", title: "Цитрусовый Эрл Грей", items: [{n: "Чай Эрл Грей", p: 60}, {n: "Апельсин и мандарин", p: 30}, {n: "Крепкий Лимон-Лайм", p: 10}] },
-            { cat: "Напитки", title: "Домашний Тархун", items: [{n: "Эстрагон", p: 50}, {n: "Крепкий Лимон-Лайм", p: 30}, {n: "Киви-Смузи", p: 20}] },
-            { cat: "Напитки", title: "Шот Лимончелло", items: [{n: "Лимончелло", p: 50}, {n: "Кактус-Лайм", p: 30}, {n: "Тростниковая Мята", p: 20}] },
-            { cat: "Напитки", title: "Тропическая Сангрия", items: [{n: "Гранат и Виноград", p: 40}, {n: "Тропический Сок", p: 40}, {n: "Апельсин и мандарин", p: 20}] },
-     { cat: "Напитки", title: "Пряный базиликовый лимонад", items: [{n: "Крепкий Лимон-Лайм", p: 40}, {n: "Базилик", p: 30}, {n: "Арбуз - Дыня", p: 30}] },
-            { cat: "Напитки", title: "Ягодный чай с бергамотом", items: [{n: "Чай Эрл Грей", p: 50}, {n: "Малина", p: 40}, {n: "Тростниковая Мята", p: 10}] },
+cats.slice(1).forEach(cat => {
+  const btn = document.createElement('button');
+  btn.className = 'filter-btn';
+  btn.dataset.cat = cat;
+  btn.textContent = cat;
+  filtersEl.appendChild(btn);
+});
 
-            // Десерты
-            { cat: "Десерты", title: "Шоколадно-коричный спешл", items: [{n: "Булочка с корицей", p: 40}, {n: "Шоколадное Печенье", p: 40}, {n: "Сливочное Мороженое", p: 20}] },
-            { cat: "Десерты", title: "Кокосовый Раффаэлло", items: [{n: "Малиновый Рифаэлло", p: 50}, {n: "Кокосовый Шейк", p: 30}, {n: "Сливочное Мороженое", p: 20}] },
-            { cat: "Десерты", title: "Лимонно-вафельный пай", items: [{n: "Лимонные Вафли", p: 50}, {n: "Сливочное Мороженое", p: 30}, {n: "Булочка с корицей", p: 20}] },
-            { cat: "Десерты", title: "Шоколадный попкорн", items: [{n: "Какао и Маршмеллоу", p: 40}, {n: "Оригинальный Попкорн", p: 40}, {n: "Сливочное Мороженое", p: 20}] },
-            { cat: "Десерты", title: "Сливочно-кукурузный йогурт", items: [{n: "Персиковый Йогурт", p: 60}, {n: "Сливочная Кукуруза", p: 20}, {n: "Кокосовый Шейк", p: 20}] },
-            { cat: "Десерты", title: "Мятно-шоколадный десерт", items: [{n: "Шоколад и Мята", p: 50}, {n: "Шоколадное Печенье", p: 30}, {n: "Сливочное Мороженое", p: 20}] },
+mixes.forEach(mix => {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.dataset.cat = mix.cat;
 
-            // Цитрусовые
-            { cat: "Цитрусовые", title: "Цитрусовый фреш", items: [{n: "Апельсин и мандарин", p: 50}, {n: "Крепкий Лимон-Лайм", p: 30}, {n: "Кактус-Лайм", p: 20}] },
-            { cat: "Цитрусовые", title: "Яркий Пинкман Цитрус", items: [{n: "Пинкман", p: 50}, {n: "Апельсин и мандарин", p: 30}, {n: "Крепкий Лимон-Лайм", p: 20}] },
-            { cat: "Цитрусовые", title: "Освежающий Кактус-Лайм", items: [{n: "Кактус-Лайм", p: 50}, {n: "Лимончелло", p: 30}, {n: "Тростниковая Мята", p: 20}] },
-            { cat: "Цитрусовые", title: "Лимонно-апельсиновый пирог", items: [{n: "Апельсин и мандарин", p: 40}, {n: "Лимонные Вафли", p: 40}, {n: "Сливочное Мороженое", p: 20}] },
-            { cat: "Цитрусовые", title: "Кислый Рокетмэн", items: [{n: "Рокетмэн", p: 50}, {n: "Крепкий Лимон-Лайм", p: 30}, {n: "Кислый Ананас", p: 20}] },
-            { cat: "Цитрусовые", title: "Пряный Лимончелло", items: [{n: "Лимончелло", p: 50}, {n: "Апельсин и мандарин", p: 30}, {n: "Базилик", p: 20}] }
-        ];
+  card.innerHTML = `
+    <div class="card-tag">${mix.cat}</div>
+    <div class="card-name">${mix.name}</div>
+    <div class="card-ingredients">${mix.ingredients}</div>
+  `;
+  grid.appendChild(card);
+});
 
-        const barColors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#1a535c', '#ff9f1c'];
+let activeFilter = 'all';
 
-        const mixGrid = document.getElementById('mixGrid');
-        const searchInput = document.getElementById('searchInput');
-        const catButtons = document.querySelectorAll('.cat-btn');
+function updateCount() {
+  const visible = [...grid.querySelectorAll('.card:not(.hidden)')].length;
+  const total = mixes.length;
+  countText.textContent = activeFilter === 'all' ? `${total} миксов` : `${visible} из ${total}`;
+}
 
-        let activeCategory = 'all';
-        let searchQuery = '';
+filtersEl.addEventListener('click', e => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  activeFilter = btn.dataset.cat;
 
-        function renderMixes() {
-            mixGrid.innerHTML = '';
+  filtersEl.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
 
-            const filtered = mixes.filter(m => {
-                const matchCat = activeCategory === 'all' || m.cat === activeCategory;
-                const matchSearch = searchQuery === '' || 
-                    m.title.toLowerCase().includes(searchQuery) ||
-                    m.items.some(i => i.n.toLowerCase().includes(searchQuery));
-                return matchCat && matchSearch;
-            });
+  grid.querySelectorAll('.card').forEach(card => {
+    card.classList.toggle('hidden', !(activeFilter === 'all' || card.dataset.cat === activeFilter));
+  });
+  updateCount();
+});
 
-            if (filtered.length === 0) {
-                mixGrid.innerHTML = '<div class="empty-state">Ничего не найдено по вашему запросу</div>';
-                return;
-            }
-
-            filtered.forEach(mix => {
-                const card = document.createElement('div');
-                card.className = 'card';
-
-                const catTagClass = cat-tag-${mix.cat.toLowerCase()};
-
-                let itemsHtml = mix.items.map(i => 
-                    <li class="ingredient-item">
-                        <span>${i.n}</span>
-                        <span class="pct">${i.p}%</span>
-                    </li>
-                ).join('');
-         let segmentsHtml = mix.items.map((i, idx) => 
-                    <div class="mix-segment" style="width: ${i.p}%; background-color: ${barColors[idx % barColors.length]};"></div>
-                ).join('');
-
-                card.innerHTML = 
-                    <div>
-                        <div class="card-header">
-                            <span class="card-category ${catTagClass}">${mix.cat}</span>
-                        </div>
-                        <div class="card-title">${mix.title}</div>
-                        <ul class="ingredients">
-                            ${itemsHtml}
-                        </ul>
-                    </div>
-                    <div class="mix-bar">
-                        ${segmentsHtml}
-                    </div>
-                ;
-
-                mixGrid.appendChild(card);
-            });
-        }
-
-        // Search listener
-        searchInput.addEventListener('input', (e) => {
-            searchQuery = e.target.value.toLowerCase().trim();
-            renderMixes();
-        });
-
-        // Category click listeners
-        catButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                catButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                activeCategory = btn.getAttribute('data-cat');
-                renderMixes();
-            });
-        });
-
-        // Initial render
-        renderMixes();
-    </script>
+updateCount();
+</script>
 </body>
 </html>
